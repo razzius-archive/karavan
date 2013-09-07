@@ -1,0 +1,4 @@
+<Response>
+    <Say voice="alice">Thanks for trying our documentation. Enjoy!</Say>
+    <Play>http://karavan.herokuapp.com/static/mp3/indaclub.mp3</Play>
+</Response>

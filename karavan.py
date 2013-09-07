@@ -21,9 +21,11 @@ def call():
         from_="+13198048229",
         url="http://karavan.herokuapp.com/response/"
     )
-    return jsonify({"success": True}) 
+    return jsonify({"success": True})
 
-    return render_template("index.html")
+@app.route("/response/")
+def respond():
+    return render_template("response.xml")
 
 if __name__ == '__main__':
     app.run(debug=True)
