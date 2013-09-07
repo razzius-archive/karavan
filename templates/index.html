@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block css %}
+<style type="text/css">
+	h1 {
+		font-size: 80px;
+		font-family: Georgia;
+		color: gray;
+    }
+    @import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+    /*basic reset*/
+    html {
+        height: 100%;
+    }
+    body {
+       height: 100%;
+       /*Image only BG fallback*/
+       background: url('http://thecodeplayer.com/uploads/media/gs.png');
+       background-color: black;
+       background:
+       linear-gradient(hsla(240, 10%, 20%, 0.9), hsla(240, 10%, 10%, 0.9)),
+       url('http://thecodeplayer.com/uploads/media/gs.png');
+       font-family: montserrat, arial, verdana;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<div class="offset2 span8 text-center">
+    <h1 class="text-center">KARAOKE</h1>
+    <div class="from_number">
+        <input type="text">
+    </div>
+    <br>
+    <div class="to_number">
+        <input type="text">
+    </div>
+    <br>
+    <div class="text-center song-chooser">
+        <select id="song" data-placeholder="Choose a Song..." class="chosen-select" style="width:350px;" tabindex="2">
+          <option value=""></option>
+          <option value="indaclub">In Da Club</option>
+      </select>
+    </div>
+    <br>
+    <button id="call_button" class="ladda-button" data-style="expand-right" data-color="green"><span id="loading_message" class="ladda-label">CALL</span></button>
+
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+$(function() {
+
+    $("#song").chosen();
+
+
+    var l = Ladda.create(document.querySelector('#call_button'));
+    $("#call_button").click(function() {
+        l.start();
+        $.get("/call/", function(data) {
+            console.log(data);
+            l.stop();
+            $("#call_button").html("CALL SUCCEEDED");
+        });
+    });
+
+});
+</script>
+{% endblock %}
+
