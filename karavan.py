@@ -23,7 +23,7 @@ def call():
     )
     return jsonify({"success": True})
 
-@app.route("/response/")
+@app.route("/response/", methods=["GET", "POST"])
 def respond():
     return render_template("response.xml")
 
