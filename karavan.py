@@ -24,7 +24,7 @@ def call():
     client.calls.create(
         to="+15154512927",
         from_="+13198048229",
-        url="http://karavan.herokuapp.com/response/"
+        url="http://hotlines.herokuapp.com/response/"
     )
     return jsonify({"success": True})
 
@@ -42,7 +42,7 @@ def respond():
     client.calls.create(
         to="+13195943124",
         from_="+13198048229",
-        url="http://karavan.herokuapp.com/music/"
+        url="http://hotlines.herokuapp.com/music/"
     )
     # Call my phone
     response = twiml.Response()
@@ -53,7 +53,7 @@ def respond():
 @app.route("/music/", methods=["GET", "POST"])
 def music():
     response = twiml.Response()
-    response.play("http://karavan.herokuapp.com/static/mp3/indaclub.mp3")
+    response.play("http://hotlines.herokuapp.com/static/mp3/indaclub.mp3")
     return str(response)
 
 @app.route("/voice/", methods=['GET', 'POST'])
