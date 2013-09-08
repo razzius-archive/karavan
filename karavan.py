@@ -50,6 +50,7 @@ def respond():
     #     r.number("+13195943124")
     # return str(response)
     response = twiml.Response()
+    response.record(maxLength="30")
     response.play("http://hotlines.herokuapp.com/static/mp3/indaclub.mp3")
     return str(response)
 
