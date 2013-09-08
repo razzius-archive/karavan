@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, jsonify
+from flask import Flask, request, render_template, jsonify
 
 from twilio import twiml
 from twilio.rest import TwilioRestClient
@@ -11,6 +11,8 @@ app = Flask(__name__)
 TWILIO_ACCOUNT_SID = os.environ["TWILIO_ACCOUNT_SID"]
 TWILIO_AUTH_TOKEN = os.environ["TWILIO_AUTH_TOKEN"]
 TWILIO_SID = os.environ["TWILIO_SID"]
+
+caller_id = "+13198048229"
 
 @app.route('/')
 def index():
@@ -30,12 +32,20 @@ def call():
 def respond():
     return render_template("response.xml")
 
-@app.route("/client", methods=["GET", "POST"])
+@app.route("/client/", methods=["GET", "POST"])
 def client():
     capability = TwilioCapability(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
     capability.allow_client_outgoing(TWILIO_SID)
     token = capability.generate()
     return render_template('client.html', token=token)
+
+@app.route("/voice/", methods=['GET', 'POST'])
+def voice():
+    from_number = request.values.get('PhoneNumber', None)
+    response = twiml.Response()
+    with response.dial(callerId=caller_id) as r:
+        r.number(from_number)
+    return str(response)
 
 @app.route("/conference", methods=["POST"])
 def conference():
