@@ -45,9 +45,12 @@ def respond():
         url="http://hotlines.herokuapp.com/music/"
     )
     # Call my phone
+    # response = twiml.Response()
+    # with response.dial(calledId=caller_id) as r:
+    #     r.number("+13195943124")
+    # return str(response)
     response = twiml.Response()
-    with response.dial(calledId=caller_id) as r:
-        r.number("+13195943124")
+    response.play("http://hotlines.herokuapp.com/static/mp3/indaclub.mp3")
     return str(response)
 
 @app.route("/music/", methods=["GET", "POST"])
