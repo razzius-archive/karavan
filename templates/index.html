@@ -30,7 +30,7 @@
   font-size: 34px;
 }
 .footer {
-  margin-top: 30px;
+  margin-top: 105px;
 }
 
 img {
@@ -38,6 +38,13 @@ img {
 }
 h2 {
   color: white;
+}
+.hero-unit {
+  background-color: hsla(200, 10%, 10%, .8);
+  padding: 20px;
+}
+#boombox {
+  width: 106px;
 }
 </style>
 
@@ -47,26 +54,27 @@ h2 {
 <br>
 <br>
 <br>
-<div class="offset2 span8 text-center">
-  <h1 class="text-center">HOT LINES</h1>
-  <h2>FREESTYLE</h2>
-  <br>
-  <div class="from_number">
-    <input type="text" placeholder="YO DIGITS">
-  </div>
-  <br>
-  <div class="to_number">
-    <input type="text" placeholder="THEY DIGITS">
-  </div>
-  <br>
-  <div>
-    <img src="/static/img/boombox.jpg">
-    <img src="/static/img/heart.png">
-    <img src="/static/img/birthday.png">
-  </div>
+<div class="offset3 span6 text-center container">
+  <div class="hero-unit">
+    <h1 class="text-center">HOT LINES</h1>
+    <h2>FREESTYLE</h2>
+    <br>
+    <div class="from_number">
+      <input type="text" placeholder="YO DIGITS">
+    </div>
+    <br>
+    <div class="to_number">
+      <input type="text" placeholder="THEY DIGITS">
+    </div>
+    <br>
+    <div>
+      <img id="boombox" src="/static/img/boombox.jpg">
+      <img src="/static/img/heart.png">
+      <img src="/static/img/birthday.png">
+    </div>
 
-  <button id="call_button" class="ladda-button" data-style="expand-right" data-color="green"><span id="loading_message" class="ladda-label">CALL</span></button>
-
+    <button id="call_button" class="ladda-button" data-style="expand-right" data-color="green"><span id="loading_message" class="ladda-label">CALL</span></button>
+  </div>
 </div>
 <center class="footer">
   <img src="/static/img/soundcloud.png">
@@ -90,6 +98,9 @@ h2 {
         l.stop();
         $("#call_button").html("CALL SUCCEEDED");
       });
+    });
+    $("#boombox").click(function(){
+      $(this).css({"border": "6px solid blue"});
     });
   });
 </script>
