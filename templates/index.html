@@ -57,7 +57,7 @@ h2 {
 <div class="offset3 span6 text-center container">
   <div class="hero-unit">
     <h1 class="text-center">HOT LINES</h1>
-    <h2>FREESTYLE</h2>
+    <h2 id="choice">-</h2>
     <br>
     <div class="from_number">
       <input type="text" placeholder="YO DIGITS">
@@ -101,6 +101,7 @@ h2 {
     });
     $("#boombox").click(function(){
       $(this).css({"border": "6px solid blue"});
+      $("#choice").html("FREESTYLE")
     });
   });
 </script>
